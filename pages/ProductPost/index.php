@@ -34,9 +34,9 @@
         <select class="form-select" name="SelectCate">
           <option selected>Choose one, please...</option>
           <?php
-          $con = new mysqli("localhost", "root", "", "database");
+          $con = new mysqli("localhost", "root", "", "baitap");
 
-          $result = $con->query("SELECT Category_id as 'ID', Category_name as 'NAME' FROM `category`");
+          $result = $con->query("SELECT Category_id as 'ID', Category_name as 'NAME' FROM `Category`");
 
           if ($result->num_rows > 0) {
             // output data of each row
@@ -81,19 +81,19 @@ if (isset($_POST["jobName"])) {
 
     //Day la vi tri them code insert sql
     // $con la bien ket noi  cong sql
-    $con = new mysqli("localhost", "root", "", "database");
+    $con = new mysqli("localhost", "root", "", "baitap");
 
     if (mysqli_connect_errno()) {
       echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
 
 
-    $con->query("INSERT INTO `jobs` (`Jobs_id`, `user_id`, `Category_id`, `Jobs_name`, `Jobs_description`, `Jobs_salary`, `Jobs_createAt`, `Jobs_updatedAt`, `Jobs_hide`) 
+    $con->query("INSERT INTO `Jobs` (`Jobs_id`, `user_id`, `Category_id`, `Jobs_name`, `Jobs_description`, `Jobs_salary`, `Jobs_createAt`, `Jobs_updatedAt`, `Jobs_hide`) 
                             VALUES (NULL, '1', '" . $cate . "' , '" . $name . "', '" . $des . "', '" . $salary . "', CURRENT_DATE(), CURRENT_DATE(), '0');");
 
     echo $name . "<br>";
-    echo $salary . "<br>";
     echo $des . "<br>";
+    echo $salary . "<br>";
     echo $cate . "<br>";
 
     //echo "<h1>".$result."</h1>";
