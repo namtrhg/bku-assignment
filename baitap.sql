@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 12, 2021 lúc 08:47 AM
--- Phiên bản máy phục vụ: 10.4.11-MariaDB
--- Phiên bản PHP: 7.4.6
+-- Host: localhost
+-- Generation Time: Nov 18, 2021 at 05:32 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `namkute`
+-- Database: `baitap`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `category`
+-- Table structure for table `Category`
 --
 
-CREATE TABLE `category` (
+CREATE TABLE `Category` (
   `Category_id` int(11) NOT NULL,
   `Category_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Category_createAt` datetime DEFAULT NULL,
@@ -36,22 +36,19 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `category`
+-- Dumping data for table `Category`
 --
 
-INSERT INTO `category` (`Category_id`, `Category_name`, `Category_createAt`, `Category_updatedAt`, `Category_hide`) VALUES
-(1, 'Front', NULL, NULL, NULL),
-(2, 'Back', NULL, NULL, NULL),
-(3, 'Dev Ops', NULL, NULL, NULL),
-(4, 'Help Desk', '2021-11-12 00:00:00', '2021-11-12 00:00:00', 0);
+INSERT INTO `Category` (`Category_id`, `Category_name`, `Category_createAt`, `Category_updatedAt`, `Category_hide`) VALUES
+(1, 'Frontend', '2021-11-18 05:06:12', '2021-11-18 05:06:12', 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `jobs`
+-- Table structure for table `Jobs`
 --
 
-CREATE TABLE `jobs` (
+CREATE TABLE `Jobs` (
   `Jobs_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `Category_id` int(11) DEFAULT NULL,
@@ -64,24 +61,19 @@ CREATE TABLE `jobs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `jobs`
+-- Dumping data for table `Jobs`
 --
 
-INSERT INTO `jobs` (`Jobs_id`, `user_id`, `Category_id`, `Jobs_name`, `Jobs_description`, `Jobs_salary`, `Jobs_createAt`, `Jobs_updatedAt`, `Jobs_hide`) VALUES
-(1, 1, 1, 'ABC', 'DEF', 100, '2021-11-12 00:00:00', '2021-11-12 00:00:00', 0),
-(2, 1, 1, '21213', '2121', 1, '2021-11-12 00:00:00', '2021-11-12 00:00:00', 0),
-(3, 1, 1, '1', '1', 1, '2021-11-12 00:00:00', '2021-11-12 00:00:00', 0),
-(4, 1, 1, '1', '1', 1, '2021-11-12 00:00:00', '2021-11-12 00:00:00', 0),
-(5, 1, 1, 'xczzxczxc', 'xczxcz', 11, '2021-11-12 00:00:00', '2021-11-12 00:00:00', 0),
-(6, 1, 3, 'Bao ve', 'Nam Kute', 100, '2021-11-12 00:00:00', '2021-11-12 00:00:00', 0);
+INSERT INTO `Jobs` (`Jobs_id`, `user_id`, `Category_id`, `Jobs_name`, `Jobs_description`, `Jobs_salary`, `Jobs_createAt`, `Jobs_updatedAt`, `Jobs_hide`) VALUES
+(4, 1, 1, 'Frontend Developer', 'Develop Progressive Web Apps and Responsive Web Apps for cloud/ IoT/ pharma applications using latest technologies such as Angular 8+, React, UI5, Vue and Ionic.', 2000, '2021-11-18 00:00:00', '2021-11-18 00:00:00', 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `role`
+-- Table structure for table `Role`
 --
 
-CREATE TABLE `role` (
+CREATE TABLE `Role` (
   `role_id` int(11) NOT NULL,
   `role_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `role_createAt` datetime DEFAULT NULL,
@@ -90,16 +82,17 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `role`
+-- Dumping data for table `Role`
 --
 
-INSERT INTO `role` (`role_id`, `role_name`, `role_createAt`, `role_updatedAt`, `role_hide`) VALUES
-(1, 'Admin', '2021-11-12 13:42:05', '2021-11-12 13:42:05', 0);
+INSERT INTO `Role` (`role_id`, `role_name`, `role_createAt`, `role_updatedAt`, `role_hide`) VALUES
+(1, 'Employer', '2021-11-18 05:22:08', '2021-11-18 05:22:08', 0),
+(2, 'User', '2021-11-18 05:22:08', '2021-11-18 05:22:08', 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -114,87 +107,87 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `role_id`, `user_name`, `user_password`, `user_email`, `user_createAt`, `user_updatedAt`, `user_hide`) VALUES
-(1, 1, 'namkute', 'xxx', 'xxxxx', NULL, NULL, NULL);
+(1, 2, 'namth', '123456', 'namtrhg@gmail.com', '2021-11-18 05:25:01', '2021-11-18 05:25:01', 0);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `category`
+-- Indexes for table `Category`
 --
-ALTER TABLE `category`
+ALTER TABLE `Category`
   ADD PRIMARY KEY (`Category_id`);
 
 --
--- Chỉ mục cho bảng `jobs`
+-- Indexes for table `Jobs`
 --
-ALTER TABLE `jobs`
+ALTER TABLE `Jobs`
   ADD PRIMARY KEY (`Jobs_id`),
   ADD KEY `ASSOCIATION_2_FK` (`user_id`),
   ADD KEY `ASSOCIATION_3_FK` (`Category_id`);
 
 --
--- Chỉ mục cho bảng `role`
+-- Indexes for table `Role`
 --
-ALTER TABLE `role`
+ALTER TABLE `Role`
   ADD PRIMARY KEY (`role_id`);
 
 --
--- Chỉ mục cho bảng `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`),
   ADD KEY `ASSOCIATION_1_FK` (`role_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `category`
+-- AUTO_INCREMENT for table `Category`
 --
-ALTER TABLE `category`
-  MODIFY `Category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `Category`
+  MODIFY `Category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `jobs`
+-- AUTO_INCREMENT for table `Jobs`
 --
-ALTER TABLE `jobs`
-  MODIFY `Jobs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `Jobs`
+  MODIFY `Jobs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `role`
+-- AUTO_INCREMENT for table `Role`
 --
-ALTER TABLE `role`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `Role`
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `jobs`
+-- Constraints for table `Jobs`
 --
-ALTER TABLE `jobs`
+ALTER TABLE `Jobs`
   ADD CONSTRAINT `FK_Association_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-  ADD CONSTRAINT `FK_Association_3` FOREIGN KEY (`Category_id`) REFERENCES `category` (`Category_id`);
+  ADD CONSTRAINT `FK_Association_3` FOREIGN KEY (`Category_id`) REFERENCES `Category` (`Category_id`);
 
 --
--- Các ràng buộc cho bảng `user`
+-- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `FK_Association_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
+  ADD CONSTRAINT `FK_Association_1` FOREIGN KEY (`role_id`) REFERENCES `Role` (`role_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
