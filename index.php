@@ -62,10 +62,11 @@
             <div class="container">
                 <h1 class="jumbotron-heading">Jobs finder for developers</h1>
                 <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-                <p>
-                    <a href="#" class="btn btn-danger my-2">Search</a>
-                    <a href="pages/ProductPost/index.php" class="btn btn-secondary my-2">Add new job</a>
-                </p>
+                <form class="form-inline d-flex justify-content-center">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="form-control btn btn-danger my-2 mr-sm-2" type="submit">Search</button>
+                    <a href="pages/ProductPost/index.php" class="form-control btn btn-secondary my-2">Add a new job</a>
+                </form>
             </div>
         </section>
 
@@ -84,12 +85,12 @@
 
                     ?>
                             <div class="col-md-4">
-                                <div class="card mb-4 box-shadow">
-                                    <div class="card-body">
+                                <div class="card mb-4 box-shadow h-100">
+                                    <div class="card-body d-flex flex-column justify-content-between">
                                         <p class="card-text"><?php echo $row["NAME"]; ?></p>
                                         <p class="card-text"><?php echo $row["DESCRIPTION"]; ?></p>
                                         <p class="card-text">Salary: <?php echo $row["SALARY"]; ?> $</p>
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center ">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                                 <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
