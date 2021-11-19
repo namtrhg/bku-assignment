@@ -1,3 +1,7 @@
+<?php
+    include_once 'class/Backend.php';
+    $Backend = new Backend;
+?>
 <!doctype html>
 <html lang="en">
 
@@ -75,10 +79,9 @@
 
                 <div class="row">
                     <?php
-                    $con = new mysqli("localhost", "root", "", "baitap");
-
-                    $result = $con->query("SELECT Jobs_id as 'ID', Jobs_name as 'NAME', Jobs_description as 'DESCRIPTION', Jobs_updatedAt as 'UPDATEDAT', Jobs_salary as 'SALARY' FROM `Jobs`");
-
+                    
+                    $result = $Backend->get_joblist();
+                    
                     if ($result->num_rows > 0) {
                         // output data of each row
                         while ($row = $result->fetch_assoc()) {
