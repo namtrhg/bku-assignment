@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 18, 2021 at 05:32 AM
+-- Generation Time: Nov 21, 2021 at 09:46 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -40,7 +40,9 @@ CREATE TABLE `Category` (
 --
 
 INSERT INTO `Category` (`Category_id`, `Category_name`, `Category_createAt`, `Category_updatedAt`, `Category_hide`) VALUES
-(1, 'Frontend', '2021-11-18 05:06:12', '2021-11-18 05:06:12', 0);
+(1, 'Frontend', '2021-11-18 05:06:12', '2021-11-18 05:06:12', 0),
+(2, 'Backend', '2021-11-18 06:23:45', '2021-11-18 06:23:45', 0),
+(3, 'FullStack', '2021-11-18 14:24:03', '2021-11-18 14:24:03', 0);
 
 -- --------------------------------------------------------
 
@@ -53,7 +55,9 @@ CREATE TABLE `Jobs` (
   `user_id` int(11) DEFAULT NULL,
   `Category_id` int(11) DEFAULT NULL,
   `Jobs_name` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Jobs_summary` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Jobs_description` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Jobs_quantity` int(5) DEFAULT NULL,
   `Jobs_salary` int(11) DEFAULT NULL,
   `Jobs_createAt` datetime DEFAULT NULL,
   `Jobs_updatedAt` datetime DEFAULT NULL,
@@ -64,8 +68,10 @@ CREATE TABLE `Jobs` (
 -- Dumping data for table `Jobs`
 --
 
-INSERT INTO `Jobs` (`Jobs_id`, `user_id`, `Category_id`, `Jobs_name`, `Jobs_description`, `Jobs_salary`, `Jobs_createAt`, `Jobs_updatedAt`, `Jobs_hide`) VALUES
-(4, 1, 1, 'Frontend Developer', 'Develop Progressive Web Apps and Responsive Web Apps for cloud/ IoT/ pharma applications using latest technologies such as Angular 8+, React, UI5, Vue and Ionic.', 2000, '2021-11-18 00:00:00', '2021-11-18 00:00:00', 0);
+INSERT INTO `Jobs` (`Jobs_id`, `user_id`, `Category_id`, `Jobs_name`, `Jobs_summary`, `Jobs_description`, `Jobs_quantity`, `Jobs_salary`, `Jobs_createAt`, `Jobs_updatedAt`, `Jobs_hide`) VALUES
+(4, 1, 1, 'Frontend Developer', NULL, 'Develop Progressive Web Apps and Responsive Web Apps for cloud/ IoT/ pharma applications using latest technologies such as Angular 8+, React, UI5, Vue and Ionic.', 0, 2000, '2021-11-18 00:00:00', '2021-11-18 00:00:00', 0),
+(5, 1, 2, 'Backend Developer', NULL, 'Modern backend technologies, such as Golang/Java/NodeJS, microservices, gRPC, and Kubernetes to realize scalable and stable cloud architectures.', 0, 1500, '2021-11-18 00:00:00', '2021-11-18 00:00:00', 0),
+(6, 1, 3, 'Fullstack Developer', NULL, 'Your are familiar with one our 3 existing tech stacks 1) TypeScript/Vue/NodeJS/GraphQL 2) Vue/Django and 3) PHP/Synphony', 0, 5000, '2021-11-18 00:00:00', '2021-11-18 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -101,6 +107,7 @@ CREATE TABLE `user` (
   `user_name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_password` varchar(254) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user_number` int(11) DEFAULT NULL,
   `user_createAt` datetime DEFAULT NULL,
   `user_updatedAt` datetime DEFAULT NULL,
   `user_hide` int(11) DEFAULT NULL
@@ -110,8 +117,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `role_id`, `user_name`, `user_password`, `user_email`, `user_createAt`, `user_updatedAt`, `user_hide`) VALUES
-(1, 2, 'namth', '123456', 'namtrhg@gmail.com', '2021-11-18 05:25:01', '2021-11-18 05:25:01', 0);
+INSERT INTO `user` (`user_id`, `role_id`, `user_name`, `user_password`, `user_email`, `user_number`, `user_createAt`, `user_updatedAt`, `user_hide`) VALUES
+(1, 2, 'namth', '123456', 'namtrhg@gmail.com', NULL, '2021-11-18 05:25:01', '2021-11-18 05:25:01', 0);
 
 --
 -- Indexes for dumped tables
@@ -152,13 +159,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `Category`
 --
 ALTER TABLE `Category`
-  MODIFY `Category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `Jobs`
 --
 ALTER TABLE `Jobs`
-  MODIFY `Jobs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Jobs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `Role`
