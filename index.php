@@ -1,6 +1,7 @@
 <?php
-    include_once 'class/Backend.php';
-    $Backend = new Backend;
+session_start();
+include_once 'class/Backend.php';
+$Backend = new Backend;
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,14 +32,29 @@
                 <div class="row">
                     <div class="col-sm-8 col-md-7 py-4">
                         <h4 class="text-white">BKU JOBS FINDER</h4>
-                        <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+                        <p class="text-muted">We help great employees like you grow your career. We do this by featuring the best jobs in various categories. We also have lots of content and resources on our blog to help you grow.</p>
                     </div>
                     <div class="col-sm-4 offset-md-1 py-4">
                         <h4 class="text-white">Contact</h4>
                         <ul class="list-unstyled">
                             <li><a href="#" class="text-white">Follow on Twitter</a></li>
                             <li><a href="#" class="text-white">Like on Facebook</a></li>
-                            <li><a href="#" class="text-white">Email me</a></li>
+                            <li><a href="mailto: ducbaojust4u@gmail.com" class="text-white">Email me</a></li>
+                            <li><a href="http://localhost/bku-assignment/pages/Login" class="text-white"><?php
+                                                                                                            if ($_SESSION["loggedin"] === false || !$_SESSION["loggedin"]) {
+                                                                                                                echo "Log In";
+                                                                                                            }
+                                                                                                            ?></a></li>
+                            <li><a href="http://localhost/bku-assignment/pages/Register" class="text-white">Register</a></li>
+                            <li>
+                                <a href="http://localhost/bku-assignment/pages/Logout" class="text-danger">
+                                    <?php
+                                    if ($_SESSION["loggedin"] === true) {
+                                        echo "Log out";
+                                    }
+                                    ?>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -53,9 +69,16 @@
                     </svg>
                     <strong>BKU JOBS FINDER</strong>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <div class="navbar-brand d-flex align-items-center">
+                    <?php if ($_SESSION["loggedin"] === true) {
+                    ?> <span class="mr-3">Welcome <?php echo $_SESSION["login_user"]; ?></span>
+                    <?php
+                    } ?>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -69,7 +92,13 @@
                 <form class="form-inline d-flex justify-content-center">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="form-control btn btn-danger my-2 mr-sm-2" type="submit">Search</button>
-                    <a href="pages/ProductPost/index.php" class="form-control btn btn-secondary my-2">Add a new job</a>
+                    <?php
+                    if ($_SESSION["user_role"] == 1) {
+                    ?>
+                        <a href="pages/ProductPost/index.php" class="form-control btn btn-secondary my-2">Add a new job</a>
+                    <?php
+                    }
+                    ?>
                 </form>
             </div>
         </section>
@@ -79,9 +108,9 @@
 
                 <div class="row">
                     <?php
-                    
+
                     $result = $Backend->get_joblist();
-                    
+
                     if ($result->num_rows > 0) {
                         // output data of each row
                         while ($row = $result->fetch_assoc()) {
@@ -90,13 +119,19 @@
                             <div class="col-md-4">
                                 <div class="card mb-4 box-shadow h-100">
                                     <div class="card-body d-flex flex-column justify-content-between">
-                                        <p class="card-text"><?php echo $row["NAME"]; ?></p>
+                                        <h3 class="card-text"><?php echo $row["NAME"]; ?></h3>
                                         <p class="card-text"><?php echo $row["DESCRIPTION"]; ?></p>
                                         <p class="card-text">Salary: <?php echo $row["SALARY"]; ?> $</p>
                                         <div class="d-flex justify-content-between align-items-center ">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                <?php
+                                                if ($_SESSION["login_user_id"] == $row["UID"] and $_SESSION["user_role"] == 1) {
+                                                ?>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                <?php
+                                                }
+                                                ?>
                                             </div>
                                             <small class="text-muted"><?php echo $row["UPDATEDAT"]; ?></small>
                                         </div>
