@@ -5,13 +5,13 @@ class Backend
     private $host = '';
     private $user = ''; 
     private $pass = '';
-    private $dbname = '';
+    private $dbname = 'bku-assignment';
     
     private $connect = '';
     
     public function __construct()
     {
-        $this->connect = new mysqli($this->host,$this->user,$this->pass,$this->dbname,3306);
+        $this->connect = new mysqli($this->host,$this->user,$this->pass,$this->dbname,3307);
     }
     
     /*Code o day*/
