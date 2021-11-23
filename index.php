@@ -18,9 +18,10 @@ $Backend = new Backend;
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Custom styles for this template -->
     <link href="index.css" rel="stylesheet">
+    <script src="js/index.js"></script>
 </head>
 
 <body>
@@ -37,9 +38,31 @@ $Backend = new Backend;
                     <h1 class="jumbotron-heading">Jobs finder for developers</h1>
                     <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
                     <form class="form-inline d-flex justify-content-start">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onfocus="SearchAutoFill(this)" onfocusout="SearchOff(this)" id="input-search" onkeyup="SearchWord(this)">
+                        
                         <button class="form-control btn btn-danger my-2 mr-sm-2" type="submit">Search</button>
                         <a href="pages/ProductPost/index.php" class="form-control btn btn-secondary my-2">Add a new job</a>
+                        
+                        <div id="autos">
+                            <ul class="list-group" id="list-auto-fill" style="display: none;">
+                                <?php
+                                //Giai thich code o day: 
+                                //
+                                //                     
+                                $result = $Backend->get_searchAutofill();
+                                
+                                if ($result->num_rows > 0) {
+                                    // output data of each row
+                                    while ($row = $result->fetch_assoc()) {
+
+                                ?>
+                                    <li class="list-group-item"><a href="/jobs/<?php echo $row["ID"]; ?>"><?php echo $row["NAME"]; ?></a></li>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </ul>
+                        </div>
                     </form>
                 </div>
                 <div class="col-sm" id="map" style="width:500px; height: 500px;">
@@ -47,6 +70,10 @@ $Backend = new Backend;
                 </div>
             </div>
         </section>
+<script>
+
+</script>
+
 
         <div class="album py-5 bg-light">
             <div class="container">
@@ -122,11 +149,6 @@ $Backend = new Backend;
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>
-        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
-    </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
