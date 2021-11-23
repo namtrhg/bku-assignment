@@ -1,9 +1,9 @@
 <?php 
 class Backend
 {
-    // Define all the needed informatio
-    private $host = '';
-    private $user = ''; 
+    // Define all the needed information
+    private $host = 'localhost';
+    private $user = 'root'; 
     private $pass = '';
     private $dbname = 'bku-assignment';
     
@@ -18,7 +18,7 @@ class Backend
     
     public function get_joblist()
     {
-        return $this->connect->query("SELECT Jobs_id as 'ID', Jobs_name as 'NAME', Jobs_description as 'DESCRIPTION', Jobs_updatedAt as 'UPDATEDAT', Jobs_salary as 'SALARY' FROM `Jobs`");
+        return $this->connect->query("SELECT Jobs_id as 'ID', Jobs_name as 'NAME', user_id as 'UID', Jobs_description as 'DESCRIPTION', Jobs_updatedAt as 'UPDATEDAT', Jobs_salary as 'SALARY' FROM `Jobs`");
     }
     
     public function get_rolelist()
