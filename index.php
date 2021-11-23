@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once 'class/Backend.php';
 $Backend = new Backend;
 ?>
@@ -64,13 +65,19 @@ $Backend = new Backend;
                             <div class="col-md-4">
                                 <div class="card mb-4 box-shadow h-100">
                                     <div class="card-body d-flex flex-column justify-content-between">
-                                        <p class="card-text"><?php echo $row["NAME"]; ?></p>
+                                        <h3 class="card-text"><?php echo $row["NAME"]; ?></h3>
                                         <p class="card-text"><?php echo $row["DESCRIPTION"]; ?></p>
                                         <p class="card-text">Salary: <?php echo $row["SALARY"]; ?> $</p>
                                         <div class="d-flex justify-content-between align-items-center ">
                                             <div class="btn-group">
                                                 <a href="./pages/ProductDetail/index.php?id=<?php echo $row["ID"]; ?>" type="button" class="btn btn-sm btn-outline-secondary">View</a>
-                                                <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                                                <?php
+                                                if ($_SESSION["login_user_id"] == $row["UID"] and $_SESSION["user_role"] == 1) {
+                                                ?>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                <?php
+                                                }
+                                                ?>
                                             </div>
                                             <small class="text-muted"><?php echo $row["UPDATEDAT"]; ?></small>
                                         </div>
