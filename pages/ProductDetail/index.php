@@ -109,7 +109,7 @@ include_once('../../components/header/index.php')
                     ?>
 	<div class='company_info'>
                 <?php
-		$connect = mysqli_connect('localhost','root','','baitap');
+		$connect = mysqli_connect('localhost','root','','bku-assignment');
 
 		$query = "SELECT user_id as 'UID', role_id as 'RID', user_name as 'UNAME', user_email as 'UMAIL' FROM `user`";  
 	        $result = mysqli_query($connect, $query);
