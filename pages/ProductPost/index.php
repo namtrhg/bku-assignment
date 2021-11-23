@@ -1,6 +1,7 @@
 <?php
 include_once "../../class/Backend.php";
 $Backend = new Backend;
+session_start();
 ?>
 
 <!DOCTYPE html>
