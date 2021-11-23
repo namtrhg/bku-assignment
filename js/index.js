@@ -3,13 +3,26 @@
 function SearchAutoFill(x)
 {
     x.style.background = "yellow";
-    $('#list-auto-fill').css("display", "block");
+
+    var query = ''; 
+      
+        $.ajax({  
+             url:"ajax/search.php",  
+             method:"POST",  
+             data:{query:query},  
+             success:function(data)  
+             {  
+                  $('#autos').fadeIn();  
+                  $('#autos').html(data);  
+             }  
+        }); 
 }
 
 function SearchOff(x)
 {
     x.style.background = "white";
-    $('#list-auto-fill').css("display", "none");
+    
+    $('#autos').html('');
 }
 
 
@@ -35,5 +48,4 @@ function SearchWord(x)
    
 }
 
-$('#input-search').val($(this).text());  
-$('#autos').fadeOut();  
+
