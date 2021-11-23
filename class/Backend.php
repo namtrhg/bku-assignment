@@ -18,7 +18,7 @@ class Backend
 
     public function get_joblist()
     {
-        return $this->connect->query("SELECT Jobs_id as 'ID', Jobs_name as 'NAME', Jobs_description as 'DESCRIPTION', Jobs_updatedAt as 'UPDATEDAT', Jobs_salary as 'SALARY',  `user_id` as 'UID' FROM `Jobs`");
+        return $this->connect->query("SELECT Jobs_id as 'ID', Jobs_name as 'NAME', user_id as 'UID', Jobs_description as 'DESCRIPTION', Jobs_updatedAt as 'UPDATEDAT', Jobs_salary as 'SALARY' FROM `Jobs`");
     }
 
     public function get_rolelist()
