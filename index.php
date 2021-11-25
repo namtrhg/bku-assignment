@@ -57,7 +57,7 @@ $Backend = new Backend;
                                     while ($row = $result->fetch_assoc()) {
 
                                 ?>
-                                    <li class="list-group-item"><a href="/jobs/<?php echo $row["ID"]; ?>"><?php echo $row["NAME"]; ?></a></li>
+                                    <li class="list-group-item"><a href="http://localhost/bku-assignment/pages/ProductDetail/index.php?id=<?php echo $row["ID"]; ?>"><?php echo $row["NAME"]; ?></a></li>
                                 <?php
                                     }
                                 }

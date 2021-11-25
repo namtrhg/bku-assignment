@@ -60,7 +60,7 @@
                 </a>
                 <div class="navbar-brand d-flex align-items-center">
                     <?php if ($_SESSION["loggedin"] === true) {
-                    ?> <span class="mr-3">Welcome <?php echo $_SESSION["login_user"];?></span>
+                    ?> <a href="http://localhost/bku-assignment/pages/Profile/index.php" class="mr-3">Welcome <?php echo $_SESSION["login_user"];?></a>
                     <?php
                     } ?>
 

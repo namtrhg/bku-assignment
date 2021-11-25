@@ -2,10 +2,10 @@
 class Backend
 {
     // Define all the needed informationn
-    private $host = '0.0.0.0:3306';
-    private $user = '';
+    private $host = 'localhost';
+    private $user = 'root';
     private $pass = '';
-    private $dbname = '';
+    private $dbname = 'bku-assignment';
     private $connect = '';
 
     public function __construct()
