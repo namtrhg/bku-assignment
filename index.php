@@ -7,24 +7,7 @@ $Backend = new Backend;
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>BKU JOB FINDER</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <!-- Custom styles for this template -->
-    <link href="index.css" rel="stylesheet">
-</head>
-
-<body>
 
     <?php
     include_once('./components/header/index.php')
@@ -40,7 +23,13 @@ $Backend = new Backend;
                     <form class="form-inline d-flex justify-content-start">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="form-control btn btn-danger my-2 mr-sm-2" type="submit">Search</button>
-                        <a href="pages/ProductPost/index.php" class="form-control btn btn-secondary my-2">Add a new job</a>
+                        <?php
+                        if ($_SESSION["user_role"] == 1) {
+                        ?>
+                            <a href="pages/ProductPost/index.php" class="form-control btn btn-secondary my-2">Add a new job</a>
+                        <?php
+                        }
+                        ?>
                     </form>
                 </div>
                 <div class="col-sm" id="map" style="width:500px; height: 500px;">
@@ -136,6 +125,6 @@ $Backend = new Backend;
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+    </body>
 
 </html>

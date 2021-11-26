@@ -3,9 +3,9 @@ class Backend
 {
     // Define all the needed informationn
     private $host = '0.0.0.0:3306';
-    private $user = '';
-    private $pass = '';
-    private $dbname = '';
+    private $user = 'root';
+    private $pass = 'baolavip1';
+    private $dbname = 'WEB_ASSIGNMENT';
 
     private $connect = '';
 
