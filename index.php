@@ -101,7 +101,8 @@ $Backend = new Backend;
                                                 <?php
                                                 if ($_SESSION["login_user_id"] == $row["UID"] and $_SESSION["user_role"] == 1) {
                                                 ?>
-                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                    <a href="./pages/ProductEdit/index.php?id=<?php echo $row["ID"]; ?>" class="btn btn-sm btn btn-danger" type="button">Edit</a>
+                                                    <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
                                                 <?php
                                                 }
                                                 ?>
