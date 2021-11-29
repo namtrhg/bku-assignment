@@ -5,7 +5,8 @@ class Backend
     private $host = 'localhost';
     private $user = 'root';
     private $pass = '';
-    private $dbname = 'bku-assignment';
+    private $dbname = '';
+
     private $connect = '';
     
 
@@ -16,7 +17,7 @@ class Backend
   
     public function get_joblist()
     {
-        return $this->connect->query("SELECT Jobs_id as 'ID', Jobs_name as 'NAME', user_id as 'UID', Jobs_description as 'DESCRIPTION', Jobs_updatedAt as 'UPDATEDAT', Jobs_salary as 'SALARY' FROM `Jobs`");
+        return $this->connect->query("SELECT Jobs_id as 'ID', Jobs_name as 'NAME', `user_id` as 'UID', Jobs_description as 'DESCRIPTION', Jobs_summary as 'SUMMARY', Jobs_updatedAt as 'UPDATEDAT', Jobs_salary as 'SALARY' FROM `Jobs`");
     }
 
     public function get_rolelist()
@@ -61,7 +62,7 @@ class Backend
     /*Code of another teamate*/
     public function get_job_by_keyword($keyword)
     {
-        $sql = "SELECT Jobs_id as 'ID', Jobs_name as 'NAME', Jobs_description as 'DESCRIPTION', Jobs_updatedAt as 'UPDATEDAT', Jobs_salary as 'SALARY' FROM `Jobs` WHERE Jobs_name LIKE ?";
+        $sql = "SELECT Jobs_id as 'ID', Jobs_name as 'NAME', Jobs_summary as 'SUMMARY',Jobs_description as 'DESCRIPTION', Jobs_updatedAt as 'UPDATEDAT', Jobs_salary as 'SALARY' FROM `Jobs` WHERE Jobs_name LIKE ?";
         if ($stmt = mysqli_prepare($this->connect, $sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_term);

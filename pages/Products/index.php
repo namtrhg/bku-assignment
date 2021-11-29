@@ -1,9 +1,13 @@
 <?php
 
-if (isset($_GET['keyword'])) {
-  $keyword = $_GET['keyword'];
+if (isset($_POST['keyword'])) {
+  $keyword = $_POST['keyword'];
 } else {
   $keyword = NULL;
+}
+
+if (isset($_GET['id'])){
+  $id = $_GET['id'];
 }
 
 include_once '../../class/Backend.php';
@@ -45,11 +49,11 @@ session_start();
               while ($row = $result->fetch_assoc()) {
 
             ?>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4">
                   <div class="card mb-4 box-shadow h-100">
                     <div class="card-body d-flex flex-column justify-content-between">
                       <h3 class="card-text"><?php echo $row["NAME"]; ?></h3>
-                      <p class="card-text"><?php echo $row["DESCRIPTION"]; ?></p>
+                      <p class="card-text"><?php echo $row["SUMMARY"]; ?></p>
                       <p class="card-text">Salary: <?php echo $row["SALARY"]; ?> $</p>
                       <div class="d-flex justify-content-between align-items-center ">
                         <div class="btn-group">

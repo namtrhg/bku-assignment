@@ -7,13 +7,13 @@
  {  
       $output = '';    
       $word = $_POST["query"];
-      $result = $Backend->get_searchWord($word);
+      $result = $Backend->get_job_by_keyword($word);
       $output = '<ul class="list-group">';  
-      if(mysqli_num_rows($result) > 0)  
+      if($result->num_rows > 0)  
       {  
            while($row = mysqli_fetch_array($result))  
            {  
-                $output .= '<li class="list-group-item"><a href="/jobs/'.$row["ID"].'">'.$row["NAME"].'</a></li>';
+                $output .= '<li class="list-group-item"><a href="./pages/ProductDetail/index.php?id='.$row["ID"].'">'.$row["NAME"].'</a></li>';
            }  
       }  
       else  

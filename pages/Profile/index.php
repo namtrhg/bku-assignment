@@ -10,7 +10,7 @@ $Backend = new Backend;
 $para_id = $_GET['id'];
 
 ?>
-
+<head>
 
 <?php
 include_once('../../components/header/index.php')
@@ -37,7 +37,7 @@ include_once('../../components/header/index.php')
         ?>
         <div class='company_info'>
             <?php
-            $connect = mysqli_connect('localhost', 'root', '', 'bku-assignment');
+            $connect = mysqli_connect('', '', '', '');
 
             $query = "SELECT user_id as 'UID', role_id as 'RID', user_name as 'UNAME', user_email as 'UMAIL' FROM `user`";
             $result = mysqli_query($connect, $query);
