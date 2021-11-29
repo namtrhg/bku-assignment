@@ -90,10 +90,11 @@ if (isset($_POST["jobName"])) {
     $salary = $_POST['salary'];
     $des = $_POST["jobDescription"];
     $cate = $_POST["SelectCate"];
+    $user_id =  $_SESSION["login_user_id"];
 
     //Day la vi tri them code insert sql
     // $con la bien ket noi  cong sql
-    $Backend->add_newjob($name, $salary, $des, $cate);
+    $Backend->add_newjob($user_id, $name, $salary, $des, $cate);
 
     alert("Da them job");
   } else {

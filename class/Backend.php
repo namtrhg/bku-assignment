@@ -23,10 +23,10 @@ class Backend
         return $this->connect->query("SELECT Category_id as 'ID', Category_name as 'NAME' FROM `category`");
     }
 
-    public function add_newjob($name, $salary, $des, $cate)
+    public function add_newjob($user_id, $name, $salary, $des, $cate)
     {
         return $this->connect->query("INSERT INTO `jobs` (`Jobs_id`, `user_id`, `Category_id`, `Jobs_name`, `Jobs_description`, `Jobs_salary`, `Jobs_createAt`, `Jobs_updatedAt`, `Jobs_hide`) 
-                                                     VALUES (NULL, '1', '" . $cate . "' , '" . $name . "', '" . $des . "', '" . $salary . "', CURRENT_DATE(), CURRENT_DATE(), '0');");
+                                                     VALUES (NULL, '" . $user_id . "' , '" . $cate . "' , '" . $name . "', '" . $des . "', '" . $salary . "', CURRENT_DATE(), CURRENT_DATE(), '0');");
     }
     
     
