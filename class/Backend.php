@@ -7,10 +7,11 @@ class Backend
     private $pass = '';
     private $dbname = 'bku-assignment';
     private $connect = '';
+    
 
     public function __construct()
     {
-        $this->connect = new mysqli($this->host,$this->user,$this->pass,$this->dbname);
+        $this->connect = new mysqli($this->host,$this->user,$this->pass,$this->dbname,$this->connect);
     }
   
     public function get_joblist()
@@ -23,12 +24,22 @@ class Backend
         return $this->connect->query("SELECT Category_id as 'ID', Category_name as 'NAME' FROM `category`");
     }
 
-    public function add_newjob($user_id, $name, $salary, $des, $cate)
+    public function add_newjob($user_id, $name, $salary, $des, $sum, $quan, $cate)
     {
-        return $this->connect->query("INSERT INTO `jobs` (`Jobs_id`, `user_id`, `Category_id`, `Jobs_name`, `Jobs_description`, `Jobs_salary`, `Jobs_createAt`, `Jobs_updatedAt`, `Jobs_hide`) 
-                                                     VALUES (NULL, '" . $user_id . "' , '" . $cate . "' , '" . $name . "', '" . $des . "', '" . $salary . "', CURRENT_DATE(), CURRENT_DATE(), '0');");
+        return $this->connect->query("INSERT INTO `jobs` (`Jobs_id`, `user_id`, `Category_id`, `Jobs_name`, `Jobs_summary`, `Jobs_description`, `Jobs_quantity`, `Jobs_salary`, `Jobs_createAt`, `Jobs_updatedAt`, `Jobs_hide`) 
+                                                     VALUES (NULL, '" . $user_id . "' , '" . $cate . "' , '" . $name . "', '" . $sum . "', '" . $des . "', '" . $quan . "', '" . $salary . "', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), '0');");
     }
-    
+
+    public function update_job($job_id, $name, $salary, $des, $sum, $quan, $cate)
+    {
+        return $this->connect->query("UPDATE `jobs` SET `Category_id` = '" . $cate . "', `Jobs_name` = '" . $name . "', `Jobs_summary` = '" . $sum . "', `Jobs_description` = '" . $des . "', `Jobs_quantity` = '" .$quan. "', `Jobs_salary` = '" . $salary . "', `Jobs_updatedAt` = CURRENT_TIMESTAMP() 
+                                                WHERE `Jobs_id` = '" .$job_id. "';");
+    }
+
+    public function get_job_detail($job_id)
+    {
+        return $this->connect->query("SELECT Jobs_name as 'NAME', Jobs_description as 'DESCRIPTION', Jobs_summary as 'SUMMARY', Jobs_quantity as 'QUANTITY', Category_id as `CATEGORY`, Jobs_salary as 'SALARY' FROM `Jobs` WHERE Jobs_id = '" .$job_id. "'");
+    }
     
     public function get_searchAutofill()
     {
@@ -89,7 +100,7 @@ class Backend
     {
         $password = md5($password);
         return $this->connect->query("INSERT INTO `user` (`user_id`,`role_id`, `user_name`, `user_password`, `user_email`,`user_createAt`, `user_updatedAt`, `user_hide`) 
-                                                     VALUES (NULL, '$role', '$username', '$password' , '$email', CURRENT_DATE(), CURRENT_DATE(), '0');");
+                                                     VALUES (NULL, '$role', '$username', '$password' , '$email', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), '0');");
     }
 
     public function login_processing($id_type, $identity, $password){
