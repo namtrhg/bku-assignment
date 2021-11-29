@@ -9,7 +9,7 @@
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Custom styles for this template -->
 <link href="../../index.css" rel="stylesheet">
 </head>
@@ -26,8 +26,6 @@
                     <div class="col-sm-4 offset-md-1 py-4">
                         <h4 class="text-white">Contact</h4>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                            <li><a href="#" class="text-white">Like on Facebook</a></li>
                             <li><a href="mailto: ducbaojust4u@gmail.com" class="text-white">Email me</a></li>
                             <li><a href="http://localhost/bku-assignment/pages/Login" class="text-white"><?php
                                     if ($_SESSION["loggedin"] === false || !$_SESSION["loggedin"]) {
@@ -52,15 +50,12 @@
         <div class="navbar navbar-dark bg-dark box-shadow">
             <div class="container d-flex justify-content-between">
                 <a href="http://localhost/bku-assignment" class="navbar-brand d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                        <circle cx="12" cy="13" r="4"></circle>
-                    </svg>
+                    <img src="https://haitrieu.com/wp-content/uploads/2021/09/Logo-DH-Bach-Khoa-HCMUT.png" alt="bku logo" width="50" height="50" class="img-thumbnail mr-3"/>
                     <strong>BKU JOBS FINDER</strong>
                 </a>
                 <div class="navbar-brand d-flex align-items-center">
                     <?php if ($_SESSION["loggedin"] === true) {
-                    ?> <span class="mr-3">Welcome <?php echo $_SESSION["login_user"];?></span>
+                    ?> <a href="http://localhost/bku-assignment/pages/Profile/index.php" class="mr-3">Welcome <?php echo $_SESSION["login_user"];?></a>
                     <?php
                     } ?>
 
