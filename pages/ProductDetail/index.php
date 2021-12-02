@@ -101,7 +101,8 @@ include_once('../../components/header/index.php')
             <div class='job_header_inner position-sticky text-align-center'>
               <h1 class='job_name'> <?php echo $row["NAME"]; ?> </h1>
               <br>
-              <button type="button" class="btn btn-block btn-danger" onclick="myAjax()">Apply now</button>
+              <button id="apply_button" type="button" class="btn btn-block btn-danger">Apply now</button>
+
             </div>
           
     <?php
@@ -140,7 +141,7 @@ include_once('../../components/header/index.php')
 
     <div class='company_info'>
       <?php
-      $connect = mysqli_connect('localhost', 'root', '', '');
+      $connect = mysqli_connect('localhost', 'root', '', 'bku-assignment');
 
       $query = "SELECT user_id as 'UID', role_id as 'RID', user_name as 'UNAME', user_number as 'UNUM', user_description as 'UDES', user_email as 'UMAIL' FROM `user`";
       $result = mysqli_query($connect, $query);
@@ -179,14 +180,27 @@ include_once('../../components/header/index.php')
         </div>
 </main>
 
-
-<?php
-include('../../pages/ProductDetail/script.js')
-?>
-
-
 <?php
 include_once('../../components/footer/index.php')
 ?>
 
 </html>
+
+<script>
+$('#apply_button').on('click', function(event) {
+event.myAjax();
+});
+</script>
+
+<script>
+function myAjax() {
+      $.ajax({
+           type: "POST",
+           url: '../../pages/ProductDetail/ajax.php',
+           data:{action:'call_this'},
+           success:function(html) {
+             alert(html);
+           }
+      });
+ }
+</script>
