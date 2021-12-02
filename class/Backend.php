@@ -5,14 +5,14 @@ class Backend
     private $host = 'localhost';
     private $user = 'root';
     private $pass = '';
-    private $dbname = '';
+    private $dbname = 'bku-assignment';
 
     private $connect = '';
     
 
     public function __construct()
     {
-        $this->connect = new mysqli($this->host,$this->user,$this->pass,$this->dbname,$this->connect);
+        $this->connect = new mysqli($this->host,$this->user,$this->pass,$this->dbname);
     }
   
     public function get_joblist()

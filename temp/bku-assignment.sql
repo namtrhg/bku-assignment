@@ -54,8 +54,8 @@ CREATE TABLE `Jobs` (
   `Jobs_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `Category_id` int(11) DEFAULT NULL,
-  `Jobs_name` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Jobs_summary` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Jobs_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Jobs_summary` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Jobs_description` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `Jobs_quantity` int(5) DEFAULT NULL,
   `Jobs_salary` int(11) DEFAULT NULL,
@@ -69,9 +69,9 @@ CREATE TABLE `Jobs` (
 --
 
 INSERT INTO `Jobs` (`Jobs_id`, `user_id`, `Category_id`, `Jobs_name`, `Jobs_summary`, `Jobs_description`, `Jobs_quantity`, `Jobs_salary`, `Jobs_createAt`, `Jobs_updatedAt`, `Jobs_hide`) VALUES
-(4, 1, 1, 'Frontend Developer', NULL, 'Develop Progressive Web Apps and Responsive Web Apps for cloud/ IoT/ pharma applications using latest technologies such as Angular 8+, React, UI5, Vue and Ionic.', 0, 2000, '2021-11-18 00:00:00', '2021-11-18 00:00:00', 0),
-(5, 1, 2, 'Backend Developer', NULL, 'Modern backend technologies, such as Golang/Java/NodeJS, microservices, gRPC, and Kubernetes to realize scalable and stable cloud architectures.', 0, 1500, '2021-11-18 00:00:00', '2021-11-18 00:00:00', 0),
-(6, 1, 3, 'Fullstack Developer', NULL, 'Your are familiar with one our 3 existing tech stacks 1) TypeScript/Vue/NodeJS/GraphQL 2) Vue/Django and 3) PHP/Synphony', 0, 5000, '2021-11-18 00:00:00', '2021-11-18 00:00:00', 0);
+(4, 1, 1, 'Frontend Developer', 'Signon bonus 13th month salary \\n Chance to be trained overseas \\n 24-27 days leave per year', 'Develop Progressive Web Apps and Responsive Web Apps for cloud/ IoT/ pharma applications using latest technologies such as Angular 8+, React, UI5, Vue and Ionic.', 0, 2000, '2021-11-18 00:00:00', '2021-11-18 00:00:00', 0),
+(5, 1, 2, 'Backend Developer', 'High-spec Macbook Pro and kits \\n WFH and Education Allowances \\n World-class projects', 'Modern backend technologies, such as Golang/Java/NodeJS, microservices, gRPC, and Kubernetes to realize scalable and stable cloud architectures.', 0, 1500, '2021-11-18 00:00:00', '2021-11-18 00:00:00', 0),
+(6, 1, 3, 'Fullstack Developer', 'Competitive salary + bonus \\n Premium healthcare package \\n English working environment', 'Your are familiar with one our 3 existing tech stacks 1) TypeScript/Vue/NodeJS/GraphQL 2) Vue/Django and 3) PHP/Synphony', 0, 5000, '2021-11-18 00:00:00', '2021-11-18 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -118,9 +118,6 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `role_id`, `user_name`, `user_password`, `user_email`, `user_number`, `user_description`, `user_createAt`, `user_updatedAt`, `user_hide`) VALUES
-(1, 2, 'namth', '123456', 'namtrhg@gmail.com', NULL, NULL, '2021-11-18 05:25:01', '2021-11-18 05:25:01', 0),
-(2, 1, 'thn1711', 'e10adc3949ba59abbe56e057f20f883e', 'namth@dwarvesv.com', NULL, NULL, '2021-11-26 00:00:00', '2021-11-26 00:00:00', 0);
 
 --
 -- Indexes for dumped tables
