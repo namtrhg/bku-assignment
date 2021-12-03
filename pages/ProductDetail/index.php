@@ -42,9 +42,7 @@ session_start();
     border-radius: 4px;
   }
 
-  .job_header_inner {
-
-  }
+  .job_header_inner {}
 
   .company_info {
     text-align: center;
@@ -56,7 +54,7 @@ session_start();
 
   .job_des {
     margin-right: 50px;
-    margin-left: 50px;    
+    margin-left: 50px;
     border: 0;
     border-radius: 4px;
   }
@@ -86,7 +84,7 @@ include_once('../../components/header/index.php')
 
 <main class="container">
 
-  		<?php
+  <?php
 
   $apply = $Backend->get_joblist();
 
@@ -102,25 +100,25 @@ include_once('../../components/header/index.php')
               <h1 class='job_name'> <?php echo $row["NAME"]; ?> </h1>
               <br>
               <button type="button" class="btn btn-block btn-danger" id="apply_button">Apply now</button>
-		
+
             </div>
-          
-    <?php
+
+      <?php
       }
     }
   }
-    ?>
+      ?>
 
-    <?php
+      <?php
 
-    $result = $Backend->get_job_detail($para_id);
-    if (mysqli_num_rows($result) > 0) {
-      while ($row = $result->fetch_assoc()) {   
-    ?>
+      $result = $Backend->get_job_detail($para_id);
+      if (mysqli_num_rows($result) > 0) {
+        while ($row = $result->fetch_assoc()) {
+      ?>
           <div class='job_des'>
             <div class='jobsum'>
               <h3>Short Job Summary: </h3>
-		<p> <?php echo $row["SUMMARY"]; ?> </p>
+              <p> <?php echo $row["SUMMARY"]; ?> </p>
             </div>
             <div class='jobnum'>
               <h3>Number of job Opening left: <?php echo $row["QUANTITY"]; ?></h3>
@@ -131,51 +129,52 @@ include_once('../../components/header/index.php')
             <h3>Job Description</h3>
 
             <?php echo $row["DESCRIPTION"]; ?>
-      <?php
-        
+        <?php
+
+        }
       }
-    }
-      ?>
+        ?>
           </div>
-</div>
+          </div>
 
-    <div class='company_info'>
-      <?php
-      $connect = mysqli_connect('localhost', 'root', '', '');
+          <div class='company_info'>
+            <?php
+            $connect = mysqli_connect('localhost', 'root', '', '');
 
-      $query = "SELECT user_id as 'UID', role_id as 'RID', user_name as 'UNAME', user_number as 'UNUM', user_description as 'UDES', user_email as 'UMAIL' FROM `user`";
-      $result = mysqli_query($connect, $query);
+            $query = "SELECT user_id as 'UID', role_id as 'RID', user_name as 'UNAME', user_number as 'UNUM', user_description as 'UDES', user_email as 'UMAIL' FROM `user`";
+            $result = mysqli_query($connect, $query);
 
-      $query2 = "SELECT user_id as 'UID2' FROM `jobs`";
-      $result2 = mysqli_query($connect, $query2);
+            $query2 = "SELECT user_id as 'UID2' FROM `jobs`";
+            $result2 = mysqli_query($connect, $query2);
 
-      if (mysqli_num_rows($result2) > 0) {
-        while ($row2 = $result2->fetch_assoc()) {
-          $para_uid = $row2["UID2"];
-        }
-      }
+            if (mysqli_num_rows($result2) > 0) {
+              while ($row2 = $result2->fetch_assoc()) {
+                $para_uid = $row2["UID2"];
+              }
+            }
 
-      if (mysqli_num_rows($result) > 0) {
-        while ($row = $result->fetch_assoc()) {
-          if ($para_uid == $row["UID"]) {
-      ?>
-            <h2><?php echo $row["UNAME"]; ?></h2>
-            <div class='container p-3'> <!-- Write Short company describtion -->
-		<?php echo $row["UDES"]; ?> </li>
-            </div>
-            <div class='container'>
-		Contact Detail:
-		<ul>
-			<li> Email: <?php echo $row["UMAIL"]; ?> </li>
-			<li> Phone: <?php echo $row["UNUM"]; ?></li>
-		</ul>
-            </div>
-      <?php
-          }
-        }
-      }
-      ?>
-    </div>
+            if (mysqli_num_rows($result) > 0) {
+              while ($row = $result->fetch_assoc()) {
+                if ($para_uid == $row["UID"]) {
+            ?>
+                  <h2><?php echo $row["UNAME"]; ?></h2>
+                  <div class='container p-3'>
+                    <!-- Write Short company describtion -->
+                    <?php echo $row["UDES"]; ?> </li>
+                  </div>
+                  <div class='container'>
+                    Contact Detail:
+                    <ul>
+                      <li> Email: <?php echo $row["UMAIL"]; ?> </li>
+                      <li> Phone: <?php echo $row["UNUM"]; ?></li>
+                    </ul>
+                  </div>
+            <?php
+                }
+              }
+            }
+            ?>
+          </div>
 
         </div>
 </main>
@@ -184,4 +183,5 @@ include_once('../../components/header/index.php')
 include_once('../../components/footer/index.php')
 ?>
 <script src="../../pages/ProductDetail/script.js"></script>
+
 </html>
